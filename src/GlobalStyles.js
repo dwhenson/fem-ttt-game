@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyles = createGlobalStyle`
 :root {
   /* Common colors */
   --clr-primary-100: hsl(178, 60%, 48%);
@@ -169,3 +172,6 @@ select {
 :focus:not(:focus-visible) {
   outline: transparent;
 }
+`;
+
+export default GlobalStyles;
