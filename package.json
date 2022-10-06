@@ -13,7 +13,9 @@
     "stylelint": "^14.12.0",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-recommended-scss": "^7.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "5.0.0",
+    "stylelint-processor-styled-components": "^1.10.0",
     "stylelint-use-logical-spec": "^4.1.0"
   },
   "scripts": {
@@ -21,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "new-component": "new-component",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:css": "stylelint './src/**/*.js'"
   },
   "eslintConfig": {
     "extends": [

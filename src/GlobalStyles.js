@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+/* stylelint-disable */
 :root {
   /* Common colors */
   --clr-primary-100: hsl(178, 60%, 48%);
