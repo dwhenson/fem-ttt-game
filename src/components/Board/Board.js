@@ -1,24 +1,25 @@
 import React from "react";
 import styled from "styled-components";
-
 import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
+import computerMove from "../../utils/computerMoves";
 
 function Board({ gameType, setGameType, marker, setMarker }) {
   const reset = Array(9).fill(null);
   const [squares, setSquares] = useLocalStorageState("squares", reset);
   const [status, setStatus] = React.useState(null);
-  const [turn, setTurn] = React.useState("X");
+  const [turn, setTurn] = React.useState(null);
 
   function resetGame() {
     setSquares(reset);
     setGameType(null);
     setStatus(null);
-    setTurn("X");
+    setMarker("X");
+    setTurn(null);
   }
 
   function renderSquareChoice(square) {
@@ -26,8 +27,18 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     const nextSquares = [...squares];
     nextSquares[square] = turn;
     setSquares(nextSquares);
-    setTurn(turn === "X" ? "O" : "X");
   }
+
+  // HACK to prevent initial change of turn state
+  const isInitialMount = React.useRef(true);
+  React.useEffect(() => {
+    if (isInitialMount.current) {
+      setTurn("X");
+      isInitialMount.current = false;
+    } else {
+      setTurn((turn) => (turn === "X" ? "O" : "X"));
+    }
+  }, [squares]);
 
   React.useEffect(() => {
     if (calculateGameStatus(squares)) {
@@ -35,13 +46,15 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     }
   }, [squares]);
 
-  if (status === "tie") {
-    return <p>It's a tie</p>;
-  }
-
-  if (status === "X" || status === "O") {
-    return <p>{status} wins</p>;
-  }
+  React.useEffect(() => {
+    if (gameType === "CPU" && marker === "O") {
+      computerMove();
+    }
+    if (gameType === "CPU" && marker !== turn) {
+      console.log({ marker, turn });
+      computerMove();
+    }
+  }, [gameType, marker, turn]);
 
   return (
     <div>
@@ -60,6 +73,8 @@ function Board({ gameType, setGameType, marker, setMarker }) {
           />
         ))}
       </Grid>
+      {status === "tie" && <p>It's a tie</p>}
+      {(status === "X" || status === "O") && <p>{status} is the winner</p>}
     </div>
   );
 }
