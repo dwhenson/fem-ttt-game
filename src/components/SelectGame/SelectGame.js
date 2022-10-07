@@ -4,10 +4,6 @@ import OOutline from "../OOutline/Ooutline";
 import XOutline from "../XOutline";
 
 function SelectGame({ setGameType, marker, setMarker }) {
-  function handleButtonClick(event) {
-    setGameType(event.target.id);
-  }
-
   return (
     <>
       <input
@@ -36,10 +32,10 @@ function SelectGame({ setGameType, marker, setMarker }) {
       <label htmlFor="O">
         <OOutline />
       </label>
-      <Button id="CPU" action={(event) => handleButtonClick(event)}>
+      <Button id="CPU" action={(event) => setGameType(event.target.id)}>
         New Game (vs CPU)
       </Button>
-      <Button id="player" action={(event) => handleButtonClick(event)}>
+      <Button id="player" action={(event) => setGameType(event.target.id)}>
         New Game (vs player)
       </Button>
     </>

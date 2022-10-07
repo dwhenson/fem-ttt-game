@@ -8,19 +8,19 @@ import TotalScores from "../TotalScores";
 function App() {
   const [gameType, setGameType] = React.useState(null);
   const [marker, setMarker] = React.useState("X");
-  console.log(gameType, marker);
 
   return (
     <>
       <Wrapper>
         {!gameType && (
           <SelectGame
+            gameType={gameType}
             setGameType={setGameType}
             marker={marker}
             setMarker={setMarker}
           />
         )}
-
+        {/* TODO Conditionally render board? */}
         <Board
           gameType={gameType}
           setGameType={setGameType}

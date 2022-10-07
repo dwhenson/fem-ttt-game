@@ -1,36 +1,54 @@
 import React from "react";
 import styled from "styled-components";
+
 import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
 import useLocalStorageState from "../../utils/useLocalStorageState";
-import { calculateNextTurn } from "../../utils/gameLogic";
+import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 
-const reset = Array(9).fill(null);
-
-function Board({ gametype, setGameType, marker, setMarker }) {
+function Board({ gameType, setGameType, marker, setMarker }) {
+  const reset = Array(9).fill(null);
   const [squares, setSquares] = useLocalStorageState("squares", reset);
-  const currentTurn = calculateNextTurn(squares);
+  const [status, setStatus] = React.useState(null);
+  const [turn, setTurn] = React.useState("X");
 
-  function renderSquareChoice(square) {
-    if (squares[square]) return;
-    const nextSquares = [...squares];
-    nextSquares[square] = currentTurn;
-    setSquares(nextSquares);
-  }
-
-  function clearSquares() {
+  function resetGame() {
     setSquares(reset);
     setGameType(null);
+    setStatus(null);
+    setTurn("X");
+  }
+
+  function renderSquareChoice(square) {
+    if (status || squares[square]) return;
+    const nextSquares = [...squares];
+    nextSquares[square] = turn;
+    setSquares(nextSquares);
+    setTurn(turn === "X" ? "O" : "X");
+  }
+
+  React.useEffect(() => {
+    if (calculateGameStatus(squares)) {
+      setStatus(calculateGameStatus(squares));
+    }
+  }, [squares]);
+
+  if (status === "tie") {
+    return <p>It's a tie</p>;
+  }
+
+  if (status === "X" || status === "O") {
+    return <p>{status} wins</p>;
   }
 
   return (
     <div>
       <Header>
         <Logo />
-        <Turn>{currentTurn} turn</Turn>
-        <Button id="restart" children={<Restart />} action={clearSquares} />
+        <Turn>{calculateNextTurn(squares)} turn</Turn>
+        <Button id="restart" children={<Restart />} action={resetGame} />
       </Header>
       <Grid>
         {squares.map((square, index) => (
