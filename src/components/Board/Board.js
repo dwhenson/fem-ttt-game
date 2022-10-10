@@ -8,7 +8,7 @@ import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
 
-function Board({ gameType, setGameType, marker, setMarker }) {
+function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const reset = Array(9).fill(null);
   const [squares, setSquares] = useLocalStorageState("squares", reset);
   const [status, setStatus] = React.useState(null);
@@ -36,9 +36,7 @@ function Board({ gameType, setGameType, marker, setMarker }) {
 
   // Check winner each time
   React.useEffect(() => {
-    // if (calculateGameStatus(squares)) {
     setStatus(calculateGameStatus(squares));
-    // }
   }, [squares]);
 
   // Manage first computer move
@@ -56,6 +54,13 @@ function Board({ gameType, setGameType, marker, setMarker }) {
       renderSquareChoice(computerMove(squares, marker));
     }
   }, [turn]);
+
+  React.useEffect(() => {
+    if (status === null) return;
+    const newScore = { ...score };
+    newScore[status] += 1;
+    setScore(newScore);
+  }, [status]);
 
   return (
     <div>

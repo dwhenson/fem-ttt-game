@@ -4,10 +4,16 @@ import GlobalStyles from "../../GlobalStyles";
 import Board from "../Board/Board";
 import SelectGame from "../SelectGame";
 import TotalScores from "../TotalScores";
+import useLocalStorageState from "../../utils/useLocalStorageState";
 
 function App() {
   const [gameType, setGameType] = React.useState(null);
   const [marker, setMarker] = React.useState("X");
+  const [score, setScore] = useLocalStorageState("score", {
+    X: 0,
+    O: 0,
+    tie: 0,
+  });
 
   return (
     <>
@@ -26,8 +32,10 @@ function App() {
           setGameType={setGameType}
           marker={marker}
           setMarker={setMarker}
+          score={score}
+          setScore={setScore}
         />
-        <TotalScores />
+        <TotalScores score={score} />
       </Wrapper>
       <GlobalStyles />
     </>

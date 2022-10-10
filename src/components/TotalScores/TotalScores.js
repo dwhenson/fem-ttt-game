@@ -1,11 +1,11 @@
 import React from "react";
 
-function TotalScores() {
+function TotalScores({ score }) {
   return (
     <div>
-      <div>X</div>
-      <div>Ties</div>
-      <div>0</div>
+      <div>X {score.X}</div>
+      <div>Ties {score.tie}</div>
+      <div>O {score.O}</div>
     </div>
   );
 }
