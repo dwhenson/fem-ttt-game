@@ -26,16 +26,17 @@ function App() {
             setMarker={setMarker}
           />
         )}
-        {/* TODO Conditionally render board? */}
-        <Board
-          gameType={gameType}
-          setGameType={setGameType}
-          marker={marker}
-          setMarker={setMarker}
-          score={score}
-          setScore={setScore}
-        />
-        <TotalScores score={score} />
+        {gameType && (
+          <Board
+            gameType={gameType}
+            setGameType={setGameType}
+            marker={marker}
+            setMarker={setMarker}
+            score={score}
+            setScore={setScore}
+          />
+        )}
+        {gameType === "CPU" && <TotalScores score={score} />}
       </Wrapper>
       <GlobalStyles />
     </>

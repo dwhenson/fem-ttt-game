@@ -4,6 +4,8 @@ import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
+import X from "../X";
+import O from "../O";
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
@@ -14,12 +16,16 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const [status, setStatus] = React.useState(null);
   const [turn, setTurn] = React.useState("X");
 
-  function resetGame() {
+  async function resetGame() {
     setSquares(reset);
-    setGameType(null);
-    setStatus(null);
-    setMarker("X");
     setTurn(null);
+    setStatus(null);
+  }
+
+  async function quitGame() {
+    await resetGame();
+    await setMarker("X");
+    await setGameType(null);
   }
 
   function renderSquareChoice(square) {
@@ -40,12 +46,12 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }, [squares]);
 
   // Manage first computer move
-  React.useEffect(() => {
-    if (gameType !== "CPU") return;
-    if (marker === "O") {
-      renderSquareChoice(computerMove(squares, marker));
-    }
-  }, [gameType]);
+  // React.useEffect(() => {
+  //   if (gameType !== "CPU") return;
+  //   if (marker === "O") {
+  //     renderSquareChoice(computerMove(squares, marker));
+  //   }
+  // }, [gameType]);
 
   // Manage computer moves
   React.useEffect(() => {
@@ -53,14 +59,30 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     if (marker !== turn) {
       renderSquareChoice(computerMove(squares, marker));
     }
-  }, [turn]);
+  }, [gameType, turn]);
 
+  // FIXME
+  // CPU as O:
+  // First round end, scores not recorded and no restart, then fine...
+  // Because marker is reset to X each time!!!
+
+  // Update total scores
   React.useEffect(() => {
+    if (gameType !== "CPU") return;
     if (status === null) return;
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
   }, [status]);
+
+  // Update total scores
+  React.useEffect(() => {
+    setScore({
+      X: 0,
+      O: 0,
+      tie: 0,
+    });
+  }, [marker]);
 
   return (
     <div>
@@ -79,8 +101,26 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
           />
         ))}
       </Grid>
-      {status === "tie" && <p>It's a tie</p>}
-      {(status === "X" || status === "O") && <p>{status} is the winner</p>}
+      {status === "tie" && (
+        <p>
+          Round Tied
+          <Button id="quit" children={"Quit"} action={quitGame} />
+          <Button id="restart" children={<Restart />} action={resetGame} />
+        </p>
+      )}
+      {(status === "X" || status === "O") && (
+        <p>
+          {gameType !== "CPU" && (
+            <p>Player {squares.filter(Boolean).length % 2 ? 1 : 2} wins</p>
+          )}
+          {gameType === "CPU" && (
+            <p>{turn !== marker ? "You won!" : "Oh no you lost"}</p>
+          )}
+          {status === "X" ? <X /> : <O />} Takes the round
+          <Button id="quit" children={"Quit"} action={quitGame} />
+          <Button id="restart" children={<Restart />} action={resetGame} />
+        </p>
+      )}
     </div>
   );
 }
