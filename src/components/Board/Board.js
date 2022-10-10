@@ -6,7 +6,6 @@ import Logo from "../Logo";
 import Restart from "../Restart";
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
-import computerMove from "../../utils/computerMoves";
 
 function Board({ gameType, setGameType, marker, setMarker }) {
   const reset = Array(9).fill(null);
@@ -29,32 +28,51 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     setSquares(nextSquares);
   }
 
-  // HACK to prevent initial change of turn state
-  const isInitialMount = React.useRef(true);
+  function computerMove(squares) {
+    const squaresLeft = squares
+      .map((square, index) => (square === null ? index : null))
+      .filter((square) => !!square);
+    const choice = squaresLeft[Math.floor(Math.random() * squaresLeft.length)];
+    renderSquareChoice(choice);
+  }
+
+  // prevent initial change of turn state
+  const isInitialTurn = React.useRef(true);
+  // Manage turn toggle
   React.useEffect(() => {
-    if (isInitialMount.current) {
+    if (isInitialTurn.current) {
       setTurn("X");
-      isInitialMount.current = false;
+      isInitialTurn.current = false;
     } else {
       setTurn((turn) => (turn === "X" ? "O" : "X"));
     }
   }, [squares]);
 
+  // Check winner each time
   React.useEffect(() => {
     if (calculateGameStatus(squares)) {
       setStatus(calculateGameStatus(squares));
     }
   }, [squares]);
 
+  // Force first computer move
+  const isPlayer0 = React.useRef(true);
+  // Manage first computer move
   React.useEffect(() => {
-    if (gameType === "CPU" && marker === "O") {
-      computerMove();
+    if (gameType !== "CPU") return;
+    if (marker === "O" && isPlayer0) {
+      computerMove(squares);
+      isPlayer0.current = false;
     }
-    if (gameType === "CPU" && marker !== turn) {
-      console.log({ marker, turn });
-      computerMove();
+  }, [gameType]);
+
+  // Manage computer moves
+  React.useEffect(() => {
+    if (gameType !== "CPU") return;
+    if (marker !== turn) {
+      computerMove(squares);
     }
-  }, [gameType, marker, turn]);
+  }, [turn]);
 
   return (
     <div>
