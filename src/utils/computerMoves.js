@@ -4,22 +4,25 @@ function pickRandomSquare(squares) {
   const squaresLeft = squares
     .map((square, index) => (square === null ? index : null))
     .filter((square) => !!square);
+
   let choice = squaresLeft[Math.floor(Math.random() * squaresLeft.length)];
   return choice;
 }
 
 function pickCenterSquare(squares) {
-  return squares[4] ? null : 4;
+  let choice = null;
+  if (!squares[4]) {
+    choice = 4;
+  }
+  return choice;
 }
 
 function offensiveComputerMove(squares, marker) {
   const computerMarker = marker === "X" ? "O" : "X";
-
+  let choice = null;
   const squaresUsed = squares.map((square, index) =>
     square === computerMarker ? index : null
   );
-  console.log(squaresUsed);
-  let choice = null;
 
   for (const line of LINES) {
     let count = [];
@@ -27,7 +30,14 @@ function offensiveComputerMove(squares, marker) {
       if (line.includes(number)) {
         count.push(number);
         if (count.length === 2) {
-          choice = line.filter((number) => !count.includes(number));
+          const possibleChoice = line.filter(
+            (number) => !count.includes(number)
+          )[0];
+          if (squares[possibleChoice]) {
+            continue;
+          } else {
+            choice = possibleChoice;
+          }
         }
       }
     }
@@ -36,10 +46,10 @@ function offensiveComputerMove(squares, marker) {
 }
 
 function defensiveComputerMove(squares, marker) {
+  let choice = null;
   const squaresUsed = squares.map((square, index) =>
     square === marker ? index : null
   );
-  let choice = null;
 
   for (const line of LINES) {
     let count = [];
@@ -47,7 +57,14 @@ function defensiveComputerMove(squares, marker) {
       if (line.includes(number)) {
         count.push(number);
         if (count.length === 2) {
-          choice = line.filter((number) => !count.includes(number));
+          const possibleChoice = line.filter(
+            (number) => !count.includes(number)
+          )[0];
+          if (squares[possibleChoice]) {
+            continue;
+          } else {
+            choice = possibleChoice;
+          }
         }
       }
     }
@@ -56,15 +73,11 @@ function defensiveComputerMove(squares, marker) {
 }
 
 export default function computerMove(squares, marker) {
-  console.log(squares, marker);
-  if (offensiveComputerMove(squares, marker)) {
-    console.log("attack", offensiveComputerMove(squares, marker));
+  if (offensiveComputerMove(squares, marker) !== null) {
     return offensiveComputerMove(squares, marker);
-  } else if (defensiveComputerMove(squares, marker)) {
-    console.log("attack", defensiveComputerMove(squares, marker));
+  } else if (defensiveComputerMove(squares, marker) !== null) {
     return defensiveComputerMove(squares, marker);
-  } else if (pickCenterSquare(squares)) {
-    console.log("center", pickCenterSquare(squares));
+  } else if (pickCenterSquare(squares) !== null) {
     return pickCenterSquare(squares);
   } else {
     return pickRandomSquare(squares);

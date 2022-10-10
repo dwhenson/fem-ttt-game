@@ -12,7 +12,7 @@ function Board({ gameType, setGameType, marker, setMarker }) {
   const reset = Array(9).fill(null);
   const [squares, setSquares] = useLocalStorageState("squares", reset);
   const [status, setStatus] = React.useState(null);
-  const [turn, setTurn] = React.useState(null);
+  const [turn, setTurn] = React.useState("X");
 
   function resetGame() {
     setSquares(reset);
@@ -29,33 +29,23 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     setSquares(nextSquares);
   }
 
-  // prevent initial change of turn state
-  const isInitialTurn = React.useRef(true);
-  // Manage turn toggle
+  // Update turn
   React.useEffect(() => {
-    if (isInitialTurn.current) {
-      setTurn("X");
-      isInitialTurn.current = false;
-    } else {
-      setTurn((turn) => (turn === "X" ? "O" : "X"));
-    }
+    setTurn(calculateNextTurn(squares));
   }, [squares]);
 
   // Check winner each time
   React.useEffect(() => {
-    if (calculateGameStatus(squares)) {
-      setStatus(calculateGameStatus(squares));
-    }
+    // if (calculateGameStatus(squares)) {
+    setStatus(calculateGameStatus(squares));
+    // }
   }, [squares]);
 
-  // Force first computer move
-  const isPlayer0 = React.useRef(true);
   // Manage first computer move
   React.useEffect(() => {
     if (gameType !== "CPU") return;
-    if (marker === "O" && isPlayer0) {
+    if (marker === "O") {
       renderSquareChoice(computerMove(squares, marker));
-      isPlayer0.current = false;
     }
   }, [gameType]);
 
@@ -71,7 +61,7 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     <div>
       <Header>
         <Logo />
-        <Turn>{calculateNextTurn(squares)} turn</Turn>
+        <Turn>{turn} turn</Turn>
         <Button id="restart" children={<Restart />} action={resetGame} />
       </Header>
       <Grid>
