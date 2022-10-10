@@ -1,66 +1,72 @@
-// import LINES from "../constants/winningLines";
+import LINES from "../constants/winningLines";
 
-// export default function computerMove(squares) {
-//   const squaresLeft = squares.filter(Boolean);
-//   const choice = squaresLeft[Math.floor(Math.random() * squaresLeft.length)];
-//   renderSquareChoice(choice);
+function pickRandomSquare(squares) {
+  const squaresLeft = squares
+    .map((square, index) => (square === null ? index : null))
+    .filter((square) => !!square);
+  let choice = squaresLeft[Math.floor(Math.random() * squaresLeft.length)];
+  return choice;
+}
 
-//   // filter squares by current turn
+function pickCenterSquare(squares) {
+  return squares[4] ? null : 4;
+}
 
-//   // let choice = this.offensiveComputerMove();
-//   // if (!choice) {
-//   //   choice = this.defensiveComputerMove();
-//   // }
+function offensiveComputerMove(squares, marker) {
+  const computerMarker = marker === "X" ? "O" : "X";
 
-//   // if (!choice) {
-//   //   choice = this.pickCenterSquare();
-//   // }
+  const squaresUsed = squares.map((square, index) =>
+    square === computerMarker ? index : null
+  );
+  console.log(squaresUsed);
+  let choice = null;
 
-//   // if (!choice) {
-//   //   choice = this.pickRandomSquare();
-//   // }
+  for (const line of LINES) {
+    let count = [];
+    for (const number of squaresUsed) {
+      if (line.includes(number)) {
+        count.push(number);
+        if (count.length === 2) {
+          choice = line.filter((number) => !count.includes(number));
+        }
+      }
+    }
+  }
+  return choice;
+}
 
-//   // this.board.markSquareAt(choice, this.computer.getMarker());
-// }
+function defensiveComputerMove(squares, marker) {
+  const squaresUsed = squares.map((square, index) =>
+    square === marker ? index : null
+  );
+  let choice = null;
 
-// // function defensiveComputerMove() {
-// //   return this.findCriticalSquare(this.human);
-// // }
+  for (const line of LINES) {
+    let count = [];
+    for (const number of squaresUsed) {
+      if (line.includes(number)) {
+        count.push(number);
+        if (count.length === 2) {
+          choice = line.filter((number) => !count.includes(number));
+        }
+      }
+    }
+  }
+  return choice;
+}
 
-// // function offensiveComputerMove() {
-// //   return this.findCriticalSquare(this.computer);
-// // }
-
-// // function findCriticalSquare(player) {
-// //   for (let index = 0; index < TTTGame.POSSIBLE_WINNING_ROWS.length; ++index) {
-// //     let row = TTTGame.POSSIBLE_WINNING_ROWS[index];
-// //     let key = this.criticalSquare(row, player);
-// //     if (key) return key;
-// //   }
-
-// //   return null;
-// // }
-
-// // function criticalSquare(row, player) {
-// //   if (this.board.countMarkersFor(player, row) === 2) {
-// //     let index = row.findIndex((key) => this.board.isUnusedSquare(key));
-// //     if (index >= 0) return row[index];
-// //   }
-
-// //   return null;
-// // }
-
-// // function pickCenterSquare() {
-// //   return this.board.isUnusedSquare("5") ? "5" : null;
-// // }
-
-// // function pickRandomSquare() {
-// //   let validChoices = this.board.unusedSquares();
-// //   let choice;
-
-// //   do {
-// //     choice = Math.floor(9 * Math.random() + 1).toString();
-// //   } while (!validChoices.includes(choice));
-
-// //   return choice;
-// // }
+export default function computerMove(squares, marker) {
+  console.log(squares, marker);
+  if (offensiveComputerMove(squares, marker)) {
+    console.log("attack", offensiveComputerMove(squares, marker));
+    return offensiveComputerMove(squares, marker);
+  } else if (defensiveComputerMove(squares, marker)) {
+    console.log("attack", defensiveComputerMove(squares, marker));
+    return defensiveComputerMove(squares, marker);
+  } else if (pickCenterSquare(squares)) {
+    console.log("center", pickCenterSquare(squares));
+    return pickCenterSquare(squares);
+  } else {
+    return pickRandomSquare(squares);
+  }
+}

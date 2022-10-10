@@ -6,6 +6,7 @@ import Logo from "../Logo";
 import Restart from "../Restart";
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
+import computerMove from "../../utils/computerMoves";
 
 function Board({ gameType, setGameType, marker, setMarker }) {
   const reset = Array(9).fill(null);
@@ -26,14 +27,6 @@ function Board({ gameType, setGameType, marker, setMarker }) {
     const nextSquares = [...squares];
     nextSquares[square] = turn;
     setSquares(nextSquares);
-  }
-
-  function computerMove(squares) {
-    const squaresLeft = squares
-      .map((square, index) => (square === null ? index : null))
-      .filter((square) => !!square);
-    const choice = squaresLeft[Math.floor(Math.random() * squaresLeft.length)];
-    renderSquareChoice(choice);
   }
 
   // prevent initial change of turn state
@@ -61,7 +54,7 @@ function Board({ gameType, setGameType, marker, setMarker }) {
   React.useEffect(() => {
     if (gameType !== "CPU") return;
     if (marker === "O" && isPlayer0) {
-      computerMove(squares);
+      renderSquareChoice(computerMove(squares, marker));
       isPlayer0.current = false;
     }
   }, [gameType]);
@@ -70,7 +63,7 @@ function Board({ gameType, setGameType, marker, setMarker }) {
   React.useEffect(() => {
     if (gameType !== "CPU") return;
     if (marker !== turn) {
-      computerMove(squares);
+      renderSquareChoice(computerMove(squares, marker));
     }
   }, [turn]);
 
