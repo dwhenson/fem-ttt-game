@@ -61,28 +61,23 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     }
   }, [gameType, turn]);
 
-  // FIXME
-  // CPU as O:
-  // First round end, scores not recorded and no restart, then fine...
-  // Because marker is reset to X each time!!!
-
   // Update total scores
   React.useEffect(() => {
-    if (gameType !== "CPU") return;
+    // if (gameType !== "CPU") return;
     if (status === null) return;
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
   }, [status]);
 
-  // Update total scores
+  // Reset total scores
   React.useEffect(() => {
     setScore({
       X: 0,
       O: 0,
       tie: 0,
     });
-  }, [marker]);
+  }, [marker, gameType]);
 
   return (
     <div>

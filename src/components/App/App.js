@@ -7,7 +7,7 @@ import TotalScores from "../TotalScores";
 import useLocalStorageState from "../../utils/useLocalStorageState";
 
 function App() {
-  const [gameType, setGameType] = React.useState(null);
+  const [gameType, setGameType] = useLocalStorageState("type", null);
   const [marker, setMarker] = React.useState("X");
   const [score, setScore] = useLocalStorageState("score", {
     X: 0,
@@ -36,7 +36,7 @@ function App() {
             setScore={setScore}
           />
         )}
-        {gameType === "CPU" && <TotalScores score={score} />}
+        {gameType && <TotalScores score={score} />}
       </Wrapper>
       <GlobalStyles />
     </>

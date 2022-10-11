@@ -6,6 +6,7 @@ import XOutline from "../XOutline";
 function SelectGame({ setGameType, marker, setMarker }) {
   return (
     <>
+      <p>Pick player 1's mark Remember: X goes first</p>
       <input
         type="radio"
         name="X"
