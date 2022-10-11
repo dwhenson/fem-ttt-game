@@ -36,7 +36,7 @@ const GlobalStyles = createGlobalStyle`
   --step-5: clamp(2.33rem, calc(1.69rem + 3.21vw), 4.58rem);
 
   /* Box shadow */
-  --shadow-color: 26, 42, 51;
+  --shadow-color: 16, 33, 42;
   /* prettier-ignore */
   --shadow-elevation-low:
     0.3px 0.5px 0.8px rgba(var(--shadow-color, 7, 0%, 14%), 0.14),
