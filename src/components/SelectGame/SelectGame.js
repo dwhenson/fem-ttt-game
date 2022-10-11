@@ -3,7 +3,7 @@ import styled from "styled-components";
 // Components
 import Logo from "../Logo";
 import XOutline from "../XOutline";
-import OOutline from "../OOutline/Ooutline";
+import OOutline from "../OOutline/OOutline";
 import Button from "../Button";
 
 function SelectGame({ setGameType, marker, setMarker }) {

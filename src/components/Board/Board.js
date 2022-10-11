@@ -5,6 +5,8 @@ import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
+import XOutline from "../XOutline";
+import OOutline from "../OOutline/OOutline";
 import Modal from "../Modal/Modal";
 // Variables
 import useLocalStorageState from "../../utils/useLocalStorageState";
@@ -66,7 +68,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     <Wrapper>
       <Header>
         <Logo />
-        <Turn>{turn} turn</Turn>
+        <Turn>{turn === "X" ? <XOutline /> : <OOutline />} turn</Turn>
         <Button id="restart" children={<Restart />} action={quitGame} />
       </Header>
       <Grid>
@@ -106,6 +108,9 @@ const Header = styled.div`
 `;
 
 const Turn = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxs);
   background-color: var(--clr-dark-200);
   color: var(--clr-light-100);
   padding-inline: var(--space-s);
@@ -113,6 +118,14 @@ const Turn = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 0.5rem;
+
+  > svg {
+    height: 1.6rem;
+    width: auto;
+    stroke: var(--clr-light-100);
+    stroke-width: 2;
+    fill: var(--clr-light-100);
+  }
 `;
 
 const Grid = styled.div`
