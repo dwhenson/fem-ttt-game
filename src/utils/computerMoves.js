@@ -49,7 +49,6 @@ function defensiveComputerMove(squares, marker) {
  * @return  {number}           The index of the square to choose
  */
 function offensiveComputerMove(squares, marker) {
-  console.log("offense");
   const computerMarker = marker === "X" ? "O" : "X";
   return findCriticalSquare(squares, computerMarker);
 }
@@ -65,6 +64,5 @@ export default function computerMove(squares, marker) {
   if (!squareToChoose) {
     squareToChoose = pickRandomSquare(squares);
   }
-  console.log(squareToChoose);
   return squareToChoose;
 }

@@ -4,8 +4,8 @@ import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
-import X from "../X";
-import O from "../O";
+import Modal from "../Modal/Modal";
+
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
@@ -45,14 +45,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     setStatus(calculateGameStatus(squares));
   }, [squares]);
 
-  // Manage first computer move
-  // React.useEffect(() => {
-  //   if (gameType !== "CPU") return;
-  //   if (marker === "O") {
-  //     renderSquareChoice(computerMove(squares, marker));
-  //   }
-  // }, [gameType]);
-
   // Manage computer moves
   React.useEffect(() => {
     if (gameType !== "CPU") return;
@@ -63,11 +55,11 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
 
   // Update total scores
   React.useEffect(() => {
-    // if (gameType !== "CPU") return;
     if (status === null) return;
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
+    console.log(status);
   }, [status]);
 
   // Reset total scores
@@ -96,26 +88,15 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
           />
         ))}
       </Grid>
-      {status === "tie" && (
-        <p>
-          Round Tied
-          <Button id="quit" children={"Quit"} action={quitGame} />
-          <Button id="restart" children={<Restart />} action={resetGame} />
-        </p>
-      )}
-      {(status === "X" || status === "O") && (
-        <p>
-          {gameType !== "CPU" && (
-            <p>Player {squares.filter(Boolean).length % 2 ? 1 : 2} wins!</p>
-          )}
-          {gameType === "CPU" && (
-            <p>{turn !== marker ? "You won!" : "Oh no you lost..."}</p>
-          )}
-          {status === "X" ? <X /> : <O />} Takes the round
-          <Button id="quit" children={"Quit"} action={quitGame} />
-          <Button id="restart" children={"Next round"} action={resetGame} />
-        </p>
-      )}
+      <Modal
+        marker={marker}
+        squares={squares}
+        turn={turn}
+        status={status}
+        gameType={gameType}
+        quitGame={quitGame}
+        resetGame={resetGame}
+      />
     </div>
   );
 }
