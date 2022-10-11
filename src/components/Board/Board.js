@@ -84,7 +84,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
       <Header>
         <Logo />
         <Turn>{turn} turn</Turn>
-        <Button id="restart" children={<Restart />} action={resetGame} />
+        <Button id="restart" children={<Restart />} action={quitGame} />
       </Header>
       <Grid>
         {squares.map((square, index) => (
@@ -106,14 +106,14 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
       {(status === "X" || status === "O") && (
         <p>
           {gameType !== "CPU" && (
-            <p>Player {squares.filter(Boolean).length % 2 ? 1 : 2} wins</p>
+            <p>Player {squares.filter(Boolean).length % 2 ? 1 : 2} wins!</p>
           )}
           {gameType === "CPU" && (
-            <p>{turn !== marker ? "You won!" : "Oh no you lost"}</p>
+            <p>{turn !== marker ? "You won!" : "Oh no you lost..."}</p>
           )}
           {status === "X" ? <X /> : <O />} Takes the round
           <Button id="quit" children={"Quit"} action={quitGame} />
-          <Button id="restart" children={<Restart />} action={resetGame} />
+          <Button id="restart" children={"Next round"} action={resetGame} />
         </p>
       )}
     </div>

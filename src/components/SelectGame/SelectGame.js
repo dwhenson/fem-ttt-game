@@ -6,7 +6,7 @@ import XOutline from "../XOutline";
 function SelectGame({ setGameType, marker, setMarker }) {
   return (
     <>
-      <p>Pick player 1's mark Remember: X goes first</p>
+      <p>Pick player 1's mark</p>
       <input
         type="radio"
         name="X"
@@ -33,6 +33,7 @@ function SelectGame({ setGameType, marker, setMarker }) {
       <label htmlFor="O">
         <OOutline />
       </label>
+      <p>Remember: X goes first</p>
       <Button id="CPU" action={(event) => setGameType(event.target.id)}>
         New Game (vs CPU)
       </Button>
