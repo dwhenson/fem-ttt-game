@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+// Components
 import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
 import Modal from "../Modal/Modal";
-
+// Variables
 import useLocalStorageState from "../../utils/useLocalStorageState";
+import initialScores from "../../constants/initialScores";
+// Helper functions
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
 
@@ -16,6 +19,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const [status, setStatus] = React.useState(null);
   const [turn, setTurn] = React.useState("X");
 
+  // Update state based on player choices
   async function resetGame() {
     setSquares(reset);
     setTurn(null);
@@ -26,6 +30,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     await resetGame();
     await setMarker("X");
     await setGameType(null);
+    await setScore(initialScores);
   }
 
   function renderSquareChoice(square) {
@@ -35,13 +40,9 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     setSquares(nextSquares);
   }
 
-  // Update turn
+  // Monitor and update game playing state
   React.useEffect(() => {
     setTurn(calculateNextTurn(squares));
-  }, [squares]);
-
-  // Check winner each time
-  React.useEffect(() => {
     setStatus(calculateGameStatus(squares));
   }, [squares]);
 
@@ -59,17 +60,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
-    console.log(status);
   }, [status]);
-
-  // Reset total scores
-  React.useEffect(() => {
-    setScore({
-      X: 0,
-      O: 0,
-      tie: 0,
-    });
-  }, [marker, gameType]);
 
   return (
     <div>
@@ -79,7 +70,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
         <Button id="restart" children={<Restart />} action={quitGame} />
       </Header>
       <Grid>
-        {squares.map((square, index) => (
+        {squares.map((_, index) => (
           <Square
             key={index}
             id={index}

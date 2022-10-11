@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+// Components
 import GlobalStyles from "../../GlobalStyles";
 import Board from "../Board/Board";
 import SelectGame from "../SelectGame";
 import TotalScores from "../TotalScores";
+// Variables
 import useLocalStorageState from "../../utils/useLocalStorageState";
+import initialScores from "../../constants/initialScores";
 
 function App() {
   const [gameType, setGameType] = useLocalStorageState("type", null);
   const [marker, setMarker] = React.useState("X");
-  const [score, setScore] = useLocalStorageState("score", {
-    X: 0,
-    O: 0,
-    tie: 0,
-  });
+  const [score, setScore] = useLocalStorageState("score", initialScores);
 
   return (
     <>
