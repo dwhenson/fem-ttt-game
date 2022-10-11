@@ -34,7 +34,9 @@ function App() {
           setScore={setScore}
         />
       )}
-      {gameType && <TotalScores score={score} />}
+      {gameType && (
+        <TotalScores gameType={gameType} marker={marker} score={score} />
+      )}
       <GlobalStyles />
     </Wrapper>
   );
@@ -55,6 +57,10 @@ const Wrapper = styled.div`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--clr-light-100);
+
+  > * ~ * {
+    margin-block-start: var(--space-m);
+  }
 `;
 
 export default App;

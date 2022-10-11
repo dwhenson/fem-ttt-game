@@ -152,7 +152,7 @@ const LightText = styled.p`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--space-s);
 `;
 
 export default SelectGame;

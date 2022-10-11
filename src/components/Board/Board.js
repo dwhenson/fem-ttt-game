@@ -63,7 +63,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }, [status]);
 
   return (
-    <div>
+    <Wrapper>
       <Header>
         <Logo />
         <Turn>{turn} turn</Turn>
@@ -88,28 +88,38 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
         quitGame={quitGame}
         resetGame={resetGame}
       />
-    </div>
+    </Wrapper>
   );
 }
 
-const Header = styled.div`
-  display: flex;
+// Styled Components
+const Wrapper = styled.div`
+  > * ~ * {
+    margin-block-start: var(--space-s);
+  }
 `;
 
-// Styled Components
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(4.5rem, 33%));
-  grid-template-rows: repeat(3, minmax(4.5rem, 33%)); ;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Turn = styled.div`
-  background-color: var(--clr-dark-100);
+  background-color: var(--clr-dark-200);
   color: var(--clr-light-100);
-  font-weight: 700;
-  font-size: var(--step--1);
+  padding-inline: var(--space-s);
+  padding-block: var(--space-xxs);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
+  border-radius: 0.5rem;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(5rem, 33%));
+  grid-template-rows: repeat(3, minmax(6rem, 33%));
+  gap: var(--space-xs);
 `;
 
 export default Board;
