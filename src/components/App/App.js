@@ -48,13 +48,14 @@ const Wrapper = styled.div`
   place-content: center;
   min-block-size: 100vh;
   overflow-y: scroll;
-  background-color: #fff;
+  background-color: var(--clr-dark-100);
   text-rendering: optimizeSpeed;
   font-family: var(--ff-body);
-  font-size: var(--step--0);
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--clr-dark-100);
+  font-size: var(--step--2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--clr-light-100);
 `;
 
 export default App;

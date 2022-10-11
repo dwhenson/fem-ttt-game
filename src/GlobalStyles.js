@@ -10,8 +10,8 @@ const GlobalStyles = createGlobalStyle`
   --clr-secondary-200: hsl(39, 100%, 69%);
   --clr-dark-100: hsl(202, 32%, 15%);
   --clr-dark-200: hsl(199, 35%, 19%);
-  --clr-light-100: hsl(198, 23%, 72%);
-  --clr-light-200: hsl(197, 33%, 89%);
+  --clr-light-100: hsl(197, 33%, 89%);
+  --clr-light-200: hsl(198, 23%, 72%);
 
   /* Spacing */
   --space-xxs: clamp(0.56rem, calc(0.54rem + 0.09vw), 0.63rem);
@@ -165,8 +165,8 @@ select {
 }
 
 :focus-visible {
-  opacity: 1 !important;
-  outline: 2px solid var(--clr-primary-400);
+  opacity: 1;
+  outline: 2px solid var(--clr-light-100);
   outline-offset: 2px;
 }
 
