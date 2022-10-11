@@ -48,12 +48,14 @@ function SelectGame({ setGameType, marker, setMarker }) {
         </InputWrapper>
         <LightText>Remember: X goes first</LightText>
       </FormWrapper>
-      <Button id="CPU" action={(event) => setGameType(event.target.id)}>
-        New Game (vs CPU)
-      </Button>
-      <Button id="player" action={(event) => setGameType(event.target.id)}>
-        New Game (vs player)
-      </Button>
+      <ButtonWrapper>
+        <Button id="CPU" action={(event) => setGameType(event.target.id)}>
+          New Game (vs CPU)
+        </Button>
+        <Button id="player" action={(event) => setGameType(event.target.id)}>
+          New Game (vs player)
+        </Button>
+      </ButtonWrapper>
     </Wrapper>
   );
 }
@@ -74,9 +76,11 @@ const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-s);
+  padding-block: var(--space-s);
+  padding-inline: var(--space-xs);
   background-color: var(--clr-dark-200);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-elevation-medium);
 
   > * ~ * {
     margin-block-start: var(--space-xs);
@@ -85,12 +89,12 @@ const FormWrapper = styled.form`
 
 const InputWrapper = styled.div`
   display: flex;
-  min-width: 100%;
   justify-content: space-between;
   gap: var(--space-xxs);
+  min-width: 100%;
+  background-color: var(--clr-dark-100);
   border: solid 4px var(--clr-dark-100);
   border-radius: 0.5rem;
-  background-color: var(--clr-dark-100);
 
   > div {
     position: relative;
@@ -112,16 +116,16 @@ const InputWrapper = styled.div`
   }
 
   input + label {
-    cursor: pointer;
-    background-color: var(--clr-dark-100);
-    height: 2rem;
     display: grid;
     place-items: center;
+    height: 2.2rem;
+    background-color: var(--clr-dark-100);
     padding-inline: var(--space-xxs);
-    border-radius: 0.35rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
 
     svg {
-      height: 1.8rem;
+      height: 1.6rem;
       width: auto;
       stroke: var(--clr-light-100);
       stroke-width: 2;
@@ -142,6 +146,13 @@ const InputWrapper = styled.div`
 
 const LightText = styled.p`
   color: var(--clr-light-200);
+  opacity: 0.5;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
 `;
 
 export default SelectGame;

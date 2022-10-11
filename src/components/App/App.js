@@ -15,30 +15,28 @@ function App() {
   const [score, setScore] = useLocalStorageState("score", initialScores);
 
   return (
-    <>
-      <Wrapper>
-        {!gameType && (
-          <SelectGame
-            gameType={gameType}
-            setGameType={setGameType}
-            marker={marker}
-            setMarker={setMarker}
-          />
-        )}
-        {gameType && (
-          <Board
-            gameType={gameType}
-            setGameType={setGameType}
-            marker={marker}
-            setMarker={setMarker}
-            score={score}
-            setScore={setScore}
-          />
-        )}
-        {gameType && <TotalScores score={score} />}
-      </Wrapper>
+    <Wrapper>
+      {!gameType && (
+        <SelectGame
+          gameType={gameType}
+          setGameType={setGameType}
+          marker={marker}
+          setMarker={setMarker}
+        />
+      )}
+      {gameType && (
+        <Board
+          gameType={gameType}
+          setGameType={setGameType}
+          marker={marker}
+          setMarker={setMarker}
+          score={score}
+          setScore={setScore}
+        />
+      )}
+      {gameType && <TotalScores score={score} />}
       <GlobalStyles />
-    </>
+    </Wrapper>
   );
 }
 
@@ -46,6 +44,7 @@ function App() {
 const Wrapper = styled.div`
   display: grid;
   place-content: center;
+  grid-template-columns: min(100%, 20rem);
   min-block-size: 100vh;
   overflow-y: scroll;
   background-color: var(--clr-dark-100);
