@@ -12,4 +12,4 @@ function OOutline() {
   );
 }
 
-export default OOutline;
+export default React.memo(OOutline);

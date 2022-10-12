@@ -12,4 +12,4 @@ function X() {
   );
 }
 
-export default X;
+export default React.memo(X);

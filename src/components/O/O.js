@@ -11,4 +11,4 @@ function O() {
   );
 }
 
-export default O;
+export default React.memo(O);

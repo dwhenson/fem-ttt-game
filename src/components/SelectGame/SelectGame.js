@@ -100,9 +100,9 @@ const InputWrapper = styled.div`
   justify-content: space-between;
   gap: var(--space-xxs);
   min-width: 100%;
-  background-color: var(--clr-dark-100);
   border: solid 4px var(--clr-dark-100);
   border-radius: 0.5rem;
+  background-color: var(--clr-dark-100);
 
   > div {
     position: relative;
@@ -127,9 +127,9 @@ const InputWrapper = styled.div`
     display: grid;
     place-items: center;
     height: 2.2rem;
-    background-color: var(--clr-dark-100);
     padding-inline: var(--space-xxs);
     border-radius: 0.3rem;
+    background-color: var(--clr-dark-100);
     cursor: pointer;
 
     svg {

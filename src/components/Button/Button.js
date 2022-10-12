@@ -15,14 +15,13 @@ function Button({ id, children, action, color, shadow }) {
 const StyledButton = styled.button`
   padding-inline: var(--space-s);
   padding-block: var(--space-xxs);
+  border: 0;
+  box-shadow: 0 0.25em var(--shadow, var(--clr-light-300));
+  border-radius: 0.5rem;
+  background-color: var(--background, var(--clr-light-200));
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-radius: 0.5rem;
-  border: 0;
   cursor: pointer;
-  background-color: var(--background, var(--clr-light-200));
-  /* box-shadow: 0 0.25em hsla(197, 21%, 49%, 1); */
-  box-shadow: 0 0.25em var(--shadow, var(--clr-light-300));
 `;
 
 export default Button;

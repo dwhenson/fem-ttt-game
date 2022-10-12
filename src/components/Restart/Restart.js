@@ -11,4 +11,4 @@ function Restart() {
   );
 }
 
-export default Restart;
+export default React.memo(Restart);

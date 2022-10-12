@@ -51,12 +51,12 @@ const Wrapper = styled.div`
   overflow-y: scroll;
   background-color: var(--clr-dark-100);
   text-rendering: optimizeSpeed;
+  color: var(--clr-light-100);
   font-family: var(--ff-body);
   font-size: var(--step--2);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--clr-light-100);
 
   > * ~ * {
     margin-block-start: var(--space-m);

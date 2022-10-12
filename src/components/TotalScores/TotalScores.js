@@ -40,11 +40,11 @@ const Scores = styled.div`
 
   > * {
     flex: 1 0 min(5rem, 33%);
-    text-align: center;
-    border-radius: 0.5rem;
-    color: var(--clr-dark-100);
     padding-block: calc(var(--space-xs) / 2);
+    border-radius: 0.5rem;
     box-shadow: 0 0.25em hsla(199, 42%, 14%, 1);
+    color: var(--clr-dark-100);
+    text-align: center;
   }
 `;
 

@@ -147,12 +147,12 @@ const Turn = styled.div`
   align-items: center;
   gap: var(--space-xxs);
   background-color: var(--clr-dark-200);
-  color: var(--clr-light-100);
   padding-inline: var(--space-s);
   padding-block: var(--space-xxs);
+  border-radius: 0.5rem;
+  color: var(--clr-light-100);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-radius: 0.5rem;
 
   > svg {
     height: 1.6rem;

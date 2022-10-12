@@ -14,10 +14,10 @@ const Button = styled.button`
   display: grid;
   place-items: center;
   padding: 0;
-  background-color: var(--clr-dark-200);
-  border-radius: 0.5rem;
   border: 0;
+  border-radius: 0.5rem;
   box-shadow: 0 0.25em var(--clr-dark-300);
+  background-color: var(--clr-dark-200);
 `;
 
 export default Square;

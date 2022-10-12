@@ -17,6 +17,7 @@ function Modal({
   confirmQuit,
   setComfirmQuit,
 }) {
+  // Confirm quit modal
   if (confirmQuit) {
     return (
       <StyledModal>
@@ -35,6 +36,7 @@ function Modal({
     );
   }
 
+  // Tie modal
   if (status === "tie") {
     return (
       <StyledModal>
@@ -53,6 +55,7 @@ function Modal({
     );
   }
 
+  // Winner modal
   if (status === "X" || status === "O") {
     return (
       <StyledModal>
@@ -90,19 +93,18 @@ const StyledModal = styled.div`
   align-items: center;
   inline-size: 100vw;
   padding-block: var(--space-xl);
+  box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
   background-color: var(--clr-dark-200);
   transform: translate(-50%, -70%);
-  box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
 `;
 
-// TODO adjust color based on prop: X|O
 const Result = styled.p`
   display: inline-flex;
   gap: var(--space-m);
-  font-size: var(--step-2);
-  letter-spacing: 0.1em;
   align-items: center;
   margin-block-end: var(--space-s);
+  font-size: var(--step-2);
+  letter-spacing: 0.1em;
   color: ${(props) =>
     props.status === "X"
       ? "var(--clr-primary-200)"
