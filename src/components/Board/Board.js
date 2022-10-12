@@ -6,7 +6,7 @@ import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
 import XOutline from "../XOutline";
-import OOutline from "../OOutline/OOutline";
+import OOutline from "../OOutline";
 import Modal from "../Modal/Modal";
 // Variables
 import initialScores from "../../constants/initialScores";
