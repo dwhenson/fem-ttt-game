@@ -36,7 +36,7 @@ const Scores = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
 
   > * {
     flex: 1 0 min(5rem, 33%);

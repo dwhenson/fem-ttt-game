@@ -89,6 +89,7 @@ button {
 body {
   min-block-size: 100vh;
   overflow-y: scroll;
+  overflow-y: hidden;
   background-color: #fff;
   line-height: 1.5;
   color: #000;

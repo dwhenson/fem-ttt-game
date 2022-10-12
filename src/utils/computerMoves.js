@@ -21,6 +21,13 @@ function pickCenterSquare(squares) {
   return !squares[4] ? 4 : null;
 }
 
+/**
+ * Find the optimal square to take
+ *
+ * @param   {array}  squares  The array of squares already used in the game
+ * @param   {string}  marker  The marker selected by the player
+ * @return  {number}           If true, the index of the square to take
+ */
 function findCriticalSquare(squares, marker) {
   const squaresUsed = squares.map((square, index) =>
     square === marker ? index : null

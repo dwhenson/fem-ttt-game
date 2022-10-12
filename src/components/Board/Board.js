@@ -9,15 +9,17 @@ import XOutline from "../XOutline";
 import OOutline from "../OOutline/OOutline";
 import Modal from "../Modal/Modal";
 // Variables
-import useLocalStorageState from "../../utils/useLocalStorageState";
 import initialScores from "../../constants/initialScores";
 // Helper functions
+import useLocalStorageState from "../../utils/useLocalStorageState";
+import useToggle from "../../utils/useToggle";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
 
 function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const reset = Array(9).fill(null);
   const [squares, setSquares] = useLocalStorageState("squares", reset);
+  const [confirmQuit, setComfirmQuit] = useToggle(false);
   const [status, setStatus] = React.useState(null);
   const [turn, setTurn] = React.useState("X");
 
@@ -29,6 +31,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }
 
   async function quitGame() {
+    setComfirmQuit();
     await resetGame();
     await setMarker("X");
     await setGameType(null);
@@ -65,22 +68,24 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }, [status]);
 
   return (
-    <Wrapper>
-      <Header>
-        <Logo />
-        <Turn>{turn === "X" ? <XOutline /> : <OOutline />} turn</Turn>
-        <Button id="restart" children={<Restart />} action={quitGame} />
-      </Header>
-      <Grid>
-        {squares.map((_, index) => (
-          <Square
-            key={index}
-            id={index}
-            squares={squares}
-            renderSquareChoice={renderSquareChoice}
-          />
-        ))}
-      </Grid>
+    <>
+      <Wrapper>
+        <Header>
+          <Logo />
+          <Turn>{turn === "X" ? <XOutline /> : <OOutline />} turn</Turn>
+          <Button id="restart" children={<Restart />} action={setComfirmQuit} />
+        </Header>
+        <Grid>
+          {squares.map((_, index) => (
+            <Square
+              key={index}
+              id={index}
+              squares={squares}
+              renderSquareChoice={renderSquareChoice}
+            />
+          ))}
+        </Grid>
+      </Wrapper>
       <Modal
         marker={marker}
         squares={squares}
@@ -89,13 +94,17 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
         gameType={gameType}
         quitGame={quitGame}
         resetGame={resetGame}
+        confirmQuit={confirmQuit}
+        setComfirmQuit={setComfirmQuit}
       />
-    </Wrapper>
+    </>
   );
 }
 
 // Styled Components
 const Wrapper = styled.div`
+  position: relative;
+
   > * ~ * {
     margin-block-start: var(--space-s);
   }
@@ -132,7 +141,7 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(5rem, 33%));
   grid-template-rows: repeat(3, minmax(6rem, 33%));
-  gap: var(--space-xs);
+  gap: var(--space-xxs);
 `;
 
 export default Board;
