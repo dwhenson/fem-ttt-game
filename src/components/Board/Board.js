@@ -22,6 +22,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const [confirmQuit, setComfirmQuit] = useToggle(false);
   const [status, setStatus] = React.useState(null);
   const [turn, setTurn] = React.useState("X");
+  const [focus, setFocus] = React.useState(null);
 
   // Update state based on player choices
   async function resetGame() {
@@ -67,15 +68,37 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     setScore(newScore);
   }, [status]);
 
+  // Prevent focus when modal is open
+  const inertHeader = React.useRef();
+  const inertGrid = React.useRef();
+
+  // Enable return to last selected element
+  function getEventTarget(event) {
+    setFocus(event.target.closest("button"));
+  }
+
+  React.useEffect(() => {
+    if (confirmQuit || Boolean(status)) {
+      inertHeader.current.setAttribute("inert", "");
+      inertGrid.current.setAttribute("inert", "");
+    } else {
+      inertHeader.current.removeAttribute("inert");
+      inertGrid.current.removeAttribute("inert");
+      if (focus) {
+        focus.focus();
+      }
+    }
+  }, [confirmQuit, status, focus]);
+
   return (
     <>
-      <Wrapper>
-        <Header>
+      <Wrapper onClick={getEventTarget}>
+        <Header ref={inertHeader}>
           <Logo />
           <Turn>{turn === "X" ? <XOutline /> : <OOutline />} turn</Turn>
           <Button id="restart" children={<Restart />} action={setComfirmQuit} />
         </Header>
-        <Grid>
+        <Grid ref={inertGrid}>
           {squares.map((_, index) => (
             <Square
               key={index}
@@ -96,6 +119,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
         resetGame={resetGame}
         confirmQuit={confirmQuit}
         setComfirmQuit={setComfirmQuit}
+        setStatus={setStatus}
       />
     </>
   );

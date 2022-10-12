@@ -62,31 +62,35 @@ function Modal({
 
 // Styled Components
 const StyledModal = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   inline-size: 100vw;
+  padding-block: var(--space-xl);
   background-color: var(--clr-dark-200);
-  padding-block: var(--space-m);
-  margin-inline-start: calc(50% - 50vw);
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  /* margin-block-start: 0; */
+  /* margin-inline-start: calc(50% - 50vw); */
   transform: translate(-50%, -70%);
+  box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
 `;
 
 // TODO adjust color based on prop: X|O
 const Result = styled.p`
   display: inline-flex;
-  font-size: var(--step-2);
-  align-items: center;
   gap: var(--space-m);
+  font-size: var(--step-2);
+  letter-spacing: 0.1em;
+  align-items: center;
   margin-block-end: var(--space-s);
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   gap: var(--space-s);
+  margin-block-start: var(--space-s);
 `;
 
 export default Modal;
