@@ -4,14 +4,18 @@ const GlobalStyles = createGlobalStyle`
 /* stylelint-disable */
 :root {
   /* Common colors */
-  --clr-primary-100: hsl(178, 60%, 48%);
-  --clr-primary-200: hsl(178, 75%, 65%);
-  --clr-secondary-100: hsl(39, 88%, 58%);
-  --clr-secondary-200: hsl(39, 100%, 69%);
+  --clr-primary-100: hsl(178, 75%, 65%);
+  --clr-primary-200: hsl(178, 60%, 48%);
+  --clr-primary-300: hsl(177, 100%, 28%);
+  --clr-secondary-100: hsl(39, 100%, 69%);
+  --clr-secondary-200: hsl(39, 88%, 58%);
+  --clr-secondary-300: hsl(38, 100%, 42%);
   --clr-dark-100: hsl(202, 32%, 15%);
   --clr-dark-200: hsl(199, 35%, 19%);
+  --clr-dark-300: hsl(199, 42%, 14%);
   --clr-light-100: hsl(197, 33%, 89%);
   --clr-light-200: hsl(198, 23%, 72%);
+  --clr-light-300: hsl(197, 21%, 49%);
 
   /* Spacing */
   --space-xxs: clamp(0.56rem, calc(0.54rem + 0.09vw), 0.63rem);

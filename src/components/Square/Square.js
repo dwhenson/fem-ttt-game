@@ -17,7 +17,7 @@ const Button = styled.button`
   background-color: var(--clr-dark-200);
   border-radius: 0.5rem;
   border: 0;
-  box-shadow: var(--shadow-elevation-medium);
+  box-shadow: 0 0.25em var(--clr-dark-300);
 `;
 
 export default Square;

@@ -63,7 +63,4 @@ const Wrapper = styled.div`
   }
 `;
 
-// If Wrapper has 3 children, set first to inert
-// Wrapper:first-child Wrapper:has(> :last-child:nth-child(3)
-
 export default App;

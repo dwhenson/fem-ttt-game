@@ -27,12 +27,14 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   // Update state based on player choices
   async function resetGame() {
     setSquares(reset);
+    setFocus(null);
     setTurn(null);
     setStatus(null);
   }
 
   async function quitGame() {
     setComfirmQuit();
+    setFocus(null);
     await resetGame();
     await setMarker("X");
     await setGameType(null);

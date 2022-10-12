@@ -23,7 +23,13 @@ function Modal({
         <Result>Restart Game?</Result>
         <ButtonWrapper>
           <Button id="cancel" children={"No, Cancel"} action={setComfirmQuit} />
-          <Button id="restart" children={"Yes, restart"} action={quitGame} />
+          <Button
+            id="restart"
+            children={"Yes, restart"}
+            action={quitGame}
+            color={"var(--clr-secondary-200)"}
+            shadow={"var(--clr-secondary-300)"}
+          />
         </ButtonWrapper>
       </StyledModal>
     );
@@ -35,7 +41,13 @@ function Modal({
         <Result>Round Tied</Result>
         <ButtonWrapper>
           <Button id="quit" children={"Quit"} action={setComfirmQuit} />
-          <Button id="restart" children={"Next round"} action={resetGame} />
+          <Button
+            id="restart"
+            children={"Next round"}
+            action={resetGame}
+            color={"var(--clr-secondary-200)"}
+            shadow={"var(--clr-secondary-300)"}
+          />
         </ButtonWrapper>
       </StyledModal>
     );
@@ -50,10 +62,18 @@ function Modal({
         {gameType === "CPU" && (
           <p>{turn !== marker ? "You won!" : "Oh no you lost..."}</p>
         )}
-        <Result>{status === "X" ? <X /> : <O />} Takes the round</Result>
+        <Result status={status}>
+          {status === "X" ? <X /> : <O />} Takes the round
+        </Result>
         <ButtonWrapper>
           <Button id="quit" children={"Quit"} action={setComfirmQuit} />
-          <Button id="restart" children={"Next round"} action={resetGame} />
+          <Button
+            id="restart"
+            children={"Next round"}
+            action={resetGame}
+            color={"var(--clr-secondary-200)"}
+            shadow={"var(--clr-secondary-300)"}
+          />
         </ButtonWrapper>
       </StyledModal>
     );
@@ -71,8 +91,6 @@ const StyledModal = styled.div`
   inline-size: 100vw;
   padding-block: var(--space-xl);
   background-color: var(--clr-dark-200);
-  /* margin-block-start: 0; */
-  /* margin-inline-start: calc(50% - 50vw); */
   transform: translate(-50%, -70%);
   box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
 `;
@@ -85,6 +103,12 @@ const Result = styled.p`
   letter-spacing: 0.1em;
   align-items: center;
   margin-block-end: var(--space-s);
+  color: ${(props) =>
+    props.status === "X"
+      ? "var(--clr-primary-200)"
+      : props.status === "O"
+      ? "var(--clr-secondary-200)"
+      : "var(--clr-light-200)"};
 `;
 
 const ButtonWrapper = styled.div`

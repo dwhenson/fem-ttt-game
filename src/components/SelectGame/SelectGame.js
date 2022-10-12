@@ -49,10 +49,18 @@ function SelectGame({ setGameType, marker, setMarker }) {
         <LightText>Remember: X goes first</LightText>
       </FormWrapper>
       <ButtonWrapper>
-        <Button id="CPU" action={(event) => setGameType(event.target.id)}>
+        <Button
+          id="CPU"
+          action={(event) => setGameType(event.target.id)}
+          color={"var(--clr-secondary-200)"}
+          shadow={"var(--clr-secondary-300)"}>
           New Game (vs CPU)
         </Button>
-        <Button id="player" action={(event) => setGameType(event.target.id)}>
+        <Button
+          id="player"
+          action={(event) => setGameType(event.target.id)}
+          color={"var(--clr-primary-200)"}
+          shadow={"var(--clr-primary-300)"}>
           New Game (vs player)
         </Button>
       </ButtonWrapper>
@@ -80,7 +88,7 @@ const FormWrapper = styled.form`
   padding-inline: var(--space-xs);
   background-color: var(--clr-dark-200);
   border-radius: 0.5rem;
-  box-shadow: var(--shadow-elevation-medium);
+  box-shadow: 0 0.25em hsla(199, 42%, 14%, 1);
 
   > * ~ * {
     margin-block-start: var(--space-xs);

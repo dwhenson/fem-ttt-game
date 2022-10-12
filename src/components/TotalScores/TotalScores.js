@@ -44,17 +44,18 @@ const Scores = styled.div`
     border-radius: 0.5rem;
     color: var(--clr-dark-100);
     padding-block: calc(var(--space-xs) / 2);
+    box-shadow: 0 0.25em hsla(199, 42%, 14%, 1);
   }
 `;
 
 const X = styled.div`
-  background-color: var(--clr-primary-100);
+  background-color: var(--clr-primary-200);
 `;
 const Tie = styled.div`
   background-color: var(--clr-light-200);
 `;
 const O = styled.div`
-  background-color: var(--clr-secondary-100);
+  background-color: var(--clr-secondary-200);
 `;
 
 const Result = styled.p`
