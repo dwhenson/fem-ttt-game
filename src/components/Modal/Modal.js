@@ -88,9 +88,9 @@ function Modal({
 // Styled Components
 const StyledModal = styled.div`
   position: absolute;
-  left: 50%;
-  top: 50%;
   display: flex;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
   flex-direction: column;
   align-items: center;
   inline-size: 100vw;
@@ -102,8 +102,8 @@ const StyledModal = styled.div`
 
 const Result = styled.p`
   display: inline-flex;
-  gap: var(--space-m);
   align-items: center;
+  gap: var(--space-m);
   margin-block-end: var(--space-s);
   font-size: var(--step-2);
   letter-spacing: 0.1em;

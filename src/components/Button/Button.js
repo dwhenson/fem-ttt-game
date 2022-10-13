@@ -17,10 +17,10 @@ const StyledButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
   background-color: var(--dark, var(--clr-light-300));
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
   transition: background-color 600ms;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
 
   &:hover {
     background-color: var(--medium, var(--clr-light-200));
@@ -28,33 +28,32 @@ const StyledButton = styled.button`
   }
 
   &:hover span {
+    box-shadow: var(--medium);
     background-color: var(--light, var(--clr-light-100));
     transform: translateY(-4px);
     transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5),
       background-color 250ms;
-    box-shadow: var(--medium);
   }
 
   &:active span {
+    background-color: var(--medium, var(--clr-light-200));
     transform: translateY(-2px);
     transition: transform 50ms;
-    background-color: var(--medium, var(--clr-light-200));
   }
 `;
 
 const Front = styled.span`
   display: block;
-  padding-inline: var(--space-s);
   padding-block: var(--space-xxs);
-  background-color: var(--medium, var(--clr-light-200));
+  padding-inline: var(--space-s);
   border-radius: 0.5rem;
+  box-shadow: var(--low);
+  background-color: var(--medium, var(--clr-light-200));
   transform: translateY(-3px);
   will-change: transform;
   transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1),
     background-color 600ms;
   pointer-events: none;
-  box-shadow: var(--low);
-  filter: brightness(100%);
 `;
 
 export default Button;

@@ -88,9 +88,9 @@ const FormWrapper = styled.form`
   align-items: center;
   padding-block: var(--space-s);
   padding-inline: var(--space-xs);
-  background-color: var(--clr-dark-200);
   border-radius: 0.5rem;
   box-shadow: 0 0.25em hsla(199, 42%, 14%, 1);
+  background-color: var(--clr-dark-200);
 
   > * ~ * {
     margin-block-start: var(--space-xs);
@@ -101,14 +101,14 @@ const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: var(--space-xxs);
-  min-width: 100%;
+  min-inline-size: 100%;
   border: solid 4px var(--clr-dark-100);
   border-radius: 0.5rem;
   background-color: var(--clr-dark-100);
 
   > div {
     position: relative;
-    width: 100%;
+    inline-size: 100%;
 
     &:focus-within :not(:focus-visible) {
       outline: 4px solid var(--clr-light-100);
@@ -118,26 +118,26 @@ const InputWrapper = styled.div`
 
   input {
     position: absolute;
-    width: 100%;
-    height: 1.8rem;
-    opacity: 0;
     z-index: 1;
+    opacity: 0;
+    inline-size: 100%;
+    block-size: 1.8rem;
     cursor: pointer;
   }
 
   input + label {
     display: grid;
     place-items: center;
-    height: 2.2rem;
+    block-size: 2.2rem;
     padding-inline: var(--space-xxs);
     border-radius: 0.3rem;
     background-color: var(--clr-dark-100);
-    cursor: pointer;
     transition: all 250ms;
+    cursor: pointer;
 
     svg {
-      height: 1.6rem;
-      width: auto;
+      inline-size: auto;
+      block-size: 1.6rem;
       stroke: var(--clr-light-100);
       stroke-width: 2;
       fill: var(--clr-light-100);
@@ -158,8 +158,8 @@ const InputWrapper = styled.div`
 `;
 
 const LightText = styled.p`
-  color: var(--clr-light-200);
   opacity: 0.5;
+  color: var(--clr-light-200);
 `;
 
 const ButtonWrapper = styled.div`

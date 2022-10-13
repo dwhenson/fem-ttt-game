@@ -34,8 +34,8 @@ function TotalScores({ gameType, score, marker }) {
 
 const Scores = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-xxs);
 
   > * {
@@ -43,8 +43,8 @@ const Scores = styled.div`
     padding-block: calc(var(--space-xs) / 2);
     border-radius: 0.5rem;
     box-shadow: 0 0.25em hsla(199, 42%, 14%, 1);
-    color: var(--clr-dark-100);
     text-align: center;
+    color: var(--clr-dark-100);
   }
 `;
 

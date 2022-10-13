@@ -142,25 +142,25 @@ const Wrapper = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const Turn = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-xxs);
-  background-color: var(--clr-dark-200);
-  padding-inline: var(--space-s);
   padding-block: var(--space-xxs);
+  padding-inline: var(--space-s);
   border-radius: 0.5rem;
-  color: var(--clr-light-100);
-  text-transform: uppercase;
+  background-color: var(--clr-dark-200);
   letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--clr-light-100);
 
   > svg {
-    height: 1.6rem;
-    width: auto;
+    inline-size: auto;
+    block-size: 1.6rem;
     stroke: var(--clr-light-100);
     stroke-width: 2;
     fill: var(--clr-light-100);
@@ -169,8 +169,8 @@ const Turn = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(5rem, 33%));
   grid-template-rows: repeat(3, minmax(6rem, 33%));
+  grid-template-columns: repeat(3, minmax(5rem, 33%));
   gap: var(--space-xxs);
 `;
 
