@@ -110,9 +110,9 @@ const InputWrapper = styled.div`
     position: relative;
     width: 100%;
 
-    &:focus-within {
-      outline: 2px solid var(--clr-light-100);
-      outline-offset: 2px;
+    &:focus-within :not(:focus-visible) {
+      outline: 4px solid var(--clr-light-100);
+      outline-offset: 4px;
     }
   }
 
@@ -133,6 +133,7 @@ const InputWrapper = styled.div`
     border-radius: 0.3rem;
     background-color: var(--clr-dark-100);
     cursor: pointer;
+    transition: all 250ms;
 
     svg {
       height: 1.6rem;
@@ -140,11 +141,13 @@ const InputWrapper = styled.div`
       stroke: var(--clr-light-100);
       stroke-width: 2;
       fill: var(--clr-light-100);
+      outline: none !important;
     }
   }
 
   input:checked + label {
     background-color: var(--clr-light-200);
+    transition: all 250ms;
 
     svg {
       stroke: var(--clr-dark-100);
