@@ -60,6 +60,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     if (marker !== turn) {
       renderSquareChoice(computerMove(squares, marker));
     }
+    // eslint-disable-next-line
   }, [gameType, turn]);
 
   // Update total scores
@@ -68,6 +69,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
+    // eslint-disable-next-line
   }, [status]);
 
   // Prevent focus when modal is open
