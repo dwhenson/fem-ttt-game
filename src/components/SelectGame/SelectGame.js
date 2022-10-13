@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 // Components
 import Logo from "../Logo";
-import XOutline from "../XOutline";
-import OOutline from "../OOutline";
+import Xsmall from "../Xsmall";
 import Button from "../Button";
 
 function SelectGame({ setGameType, marker, setMarker }) {
@@ -27,7 +26,7 @@ function SelectGame({ setGameType, marker, setMarker }) {
               }}
             />
             <label htmlFor="X">
-              <XOutline />
+              <Xsmall />
             </label>
           </div>
           <div>

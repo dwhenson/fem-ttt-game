@@ -5,8 +5,7 @@ import Square from "../Square";
 import Button from "../Button";
 import Logo from "../Logo";
 import Restart from "../Restart";
-import XOutline from "../XOutline";
-import OOutline from "../OOutline";
+import Xsmall from "../Xsmall";
 import Modal from "../Modal/Modal";
 // Variables
 import initialScores from "../../constants/initialScores";
@@ -97,7 +96,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
       <Wrapper onClick={getEventTarget}>
         <Header ref={inertHeader}>
           <Logo />
-          <Turn>{turn === "X" ? <XOutline /> : <OOutline />} turn</Turn>
+          <Turn>{turn === "X" ? <Xsmall /> : <OOutline />} turn</Turn>
           <Button id="restart" children={<Restart />} action={setComfirmQuit} />
         </Header>
         <Grid ref={inertGrid}>

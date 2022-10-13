@@ -1,6 +1,6 @@
 import React from "react";
 
-function XOutline() {
+function Xsmall() {
   return (
     <svg
       width="64"
@@ -12,4 +12,4 @@ function XOutline() {
   );
 }
 
-export default React.memo(XOutline);
+export default React.memo(Xsmall);
