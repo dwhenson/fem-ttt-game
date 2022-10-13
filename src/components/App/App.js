@@ -3,8 +3,8 @@ import styled from "styled-components";
 // Components
 import GlobalStyles from "../../GlobalStyles";
 import Board from "../Board/Board";
-import SelectGame from "../SelectGame";
-import TotalScores from "../TotalScores";
+import SelectGame from "../SelectGame/SelectGame";
+import TotalScores from "../TotalScores/TotalScores";
 // Variables
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import initialScores from "../../constants/initialScores";

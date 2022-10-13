@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 // Components
-import Logo from "../Logo";
-import Xsmall from "../Xsmall";
-import Button from "../Button";
+import Logo from "../Logo/Logo";
+import Xsmall from "../Xsmall/Xsmall";
+import Osmall from "../Osmall/Osmall";
+import Button from "../Button/Button";
 
 function SelectGame({ setGameType, marker, setMarker }) {
   return (
@@ -41,7 +42,7 @@ function SelectGame({ setGameType, marker, setMarker }) {
               }}
             />
             <label htmlFor="O">
-              <OOutline />
+              <Osmall />
             </label>
           </div>
         </InputWrapper>

@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 // Components
-import Square from "../Square";
-import Button from "../Button";
-import Logo from "../Logo";
-import Restart from "../Restart";
-import Xsmall from "../Xsmall";
+import Square from "../Square/Square";
+import Button from "../Button/Button";
+import Logo from "../Logo/Logo";
+import Restart from "../Restart/Restart";
+import Xsmall from "../Xsmall/Xsmall";
+import Osmall from "../Osmall/Osmall";
 import Modal from "../Modal/Modal";
 // Variables
 import initialScores from "../../constants/initialScores";
@@ -96,7 +97,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
       <Wrapper onClick={getEventTarget}>
         <Header ref={inertHeader}>
           <Logo />
-          <Turn>{turn === "X" ? <Xsmall /> : <OOutline />} turn</Turn>
+          <Turn>{turn === "X" ? <Xsmall /> : <Osmall />} turn</Turn>
           <Button id="restart" children={<Restart />} action={setComfirmQuit} />
         </Header>
         <Grid ref={inertGrid}>

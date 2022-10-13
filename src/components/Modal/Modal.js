@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 // Components
-import Button from "../Button";
-import X from "../X";
-import O from "../O";
+import Button from "../Button/Button";
+import X from "../X/X";
+import O from "../O/O";
 
 function Modal({
   turn,
