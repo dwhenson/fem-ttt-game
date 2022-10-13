@@ -27,7 +27,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   // Update state based on player choices
   async function resetGame() {
     setSquares(reset);
-    setFocus(null);
     setTurn(null);
     setStatus(null);
   }
@@ -80,6 +79,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
 
   // Enable return to last selected element
   function getEventTarget(event) {
+    console.log(event.target.closest("button"));
     setFocus(event.target.closest("button"));
   }
 

@@ -99,7 +99,11 @@ const StyledModal = styled.div`
   background-color: var(--clr-dark-200);
   transform: translate(-50%, -70%);
   animation-name: delay;
-  animation-duration: ${(props) => (props.delay ? "2s" : "200ms")};
+  animation-delay: ${(props) => (props.delay ? "750ms" : "50ms")};
+  animation-duration: 250ms;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  opacity: 0;
 
   @keyframes delay {
     0% {

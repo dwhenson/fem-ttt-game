@@ -60,16 +60,24 @@ function offensiveComputerMove(squares, marker) {
   return findCriticalSquare(squares, computerMarker);
 }
 
+/**
+ * Define optimal computer move
+ * @param   {array}  squares  The array of squares used in the game
+ * @param   {string}  marker   The human player marker
+ * @return  {number}           The index of the optimal square to select
+ */
 export default function computerMove(squares, marker) {
   let squareToChoose = offensiveComputerMove(squares, marker);
-  if (!squareToChoose) {
+  if (!squareToChoose && squareToChoose !== 0) {
     squareToChoose = defensiveComputerMove(squares, marker);
   }
-  if (!squareToChoose) {
+  if (!squareToChoose && squareToChoose !== 0) {
     squareToChoose = pickCenterSquare(squares);
   }
-  if (!squareToChoose) {
+  if (!squareToChoose && squareToChoose !== 0) {
     squareToChoose = pickRandomSquare(squares);
   }
   return squareToChoose;
 }
+
+// if human chooses 0 & 8, or 2 & 6, then choose 1, 3, 5, 7
