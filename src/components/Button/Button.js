@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   border-radius: 0.5rem;
   background-color: var(--dark, var(--clr-light-300));
   transition: background-color 600ms;
+  color: var(--clr-dark-300);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
