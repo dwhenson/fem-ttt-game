@@ -6,7 +6,13 @@ import O from "../O";
 function Square({ id, squares, renderSquareChoice }) {
   const icon = squares[id] === "X" ? <X /> : squares[id] === "O" ? <O /> : null;
 
-  return <Button onClick={() => renderSquareChoice(id)}>{icon}</Button>;
+  return (
+    <Button
+      onClick={() => renderSquareChoice(id)}
+      aria-label={squares[id] ?? "blank"}>
+      {icon}
+    </Button>
+  );
 }
 
 // Styled Components

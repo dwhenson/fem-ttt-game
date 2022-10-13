@@ -102,7 +102,12 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
         <Header ref={inertHeader}>
           <Logo />
           <Turn>{turn === "X" ? <Xsmall /> : <Osmall />} turn</Turn>
-          <Button id="restart" children={<Restart />} action={setComfirmQuit} />
+          <Button
+            id="restart"
+            aria-label="Restart"
+            children={<Restart />}
+            action={setComfirmQuit}
+          />
         </Header>
         <Grid ref={inertGrid}>
           {squares.map((_, index) => (
