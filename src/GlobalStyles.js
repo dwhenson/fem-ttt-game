@@ -171,8 +171,8 @@ select {
 
 :focus-visible {
   opacity: 1;
-  outline: 2px solid var(--clr-light-100);
-  outline-offset: 0.5rem;
+  outline: 4px solid var(--clr-light-100);
+  outline-offset: 6px;
 }
 
 :focus:not(:focus-visible) {

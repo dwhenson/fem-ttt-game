@@ -98,6 +98,21 @@ const StyledModal = styled.div`
   box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
   background-color: var(--clr-dark-200);
   transform: translate(-50%, -70%);
+  animation-name: delay;
+  animation-duration: 1.25s;
+
+  @keyframes delay {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0);
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+      box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
+    }
+  }
 `;
 
 const Result = styled.p`

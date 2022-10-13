@@ -20,4 +20,4 @@ const Button = styled.button`
   background-color: var(--clr-dark-200);
 `;
 
-export default Square;
+export default React.memo(Square);

@@ -56,4 +56,4 @@ const Front = styled.span`
   pointer-events: none;
 `;
 
-export default Button;
+export default React.memo(Button);
