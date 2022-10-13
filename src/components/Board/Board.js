@@ -24,13 +24,14 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const [turn, setTurn] = React.useState("X");
   const [focus, setFocus] = React.useState(null);
 
-  // Update state based on player choices
+  // Reset state but keep playing game
   async function resetGame() {
     setSquares(reset);
     setTurn(null);
     setStatus(null);
   }
 
+  // Reset all state and return to initial screen
   async function quitGame() {
     setComfirmQuit();
     setFocus(null);
@@ -40,6 +41,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     await setScore(initialScores);
   }
 
+  // Update UI to reflect square chosen
   function renderSquareChoice(square) {
     if (status || squares[square]) return;
     const nextSquares = [...squares];
@@ -73,16 +75,16 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     // eslint-disable-next-line
   }, [status]);
 
-  // Prevent focus when modal is open
+  // Prevent focus on other components when modal is open
   const inertHeader = React.useRef();
   const inertGrid = React.useRef();
 
   // Enable return to last selected element
   function getEventTarget(event) {
-    console.log(event.target.closest("button"));
     setFocus(event.target.closest("button"));
   }
 
+  // Set and remove inert attribute when modal is open
   React.useEffect(() => {
     if (confirmQuit || Boolean(status)) {
       inertHeader.current.setAttribute("inert", "");

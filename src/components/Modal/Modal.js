@@ -39,7 +39,7 @@ function Modal({
   // Tie modal
   if (status === "tie") {
     return (
-      <StyledModal>
+      <StyledModal delay={true}>
         <Result>Round Tied</Result>
         <ButtonWrapper>
           <Button id="quit" children={"Quit"} action={setComfirmQuit} />
@@ -108,12 +108,12 @@ const StyledModal = styled.div`
   @keyframes delay {
     0% {
       opacity: 0;
-      visibility: hidden;
+      /* visibility: hidden; */
       box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0);
     }
     100% {
       opacity: 1;
-      visibility: visible;
+      /* visibility: visible; */
       box-shadow: 0 0 0 100vw hsla(202, 32%, 15%, 0.8);
     }
   }

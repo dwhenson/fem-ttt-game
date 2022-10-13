@@ -49,10 +49,10 @@ This is my second project using React and the first using styled componenets. I'
 
 ### Where I got stuck
 
-- I used `focus-within` to manage the keyboard focus outline on the styled inputs, but didn't manage to get the outline not appearing on mouse clicks only. I wanted something like `:focus-within:not(:focus-visible)` but I couldn't make this work. The outline is not really needed as the color change is very obvious. I could remove it completely but preferred to leave it rather than remove it.
-- One issue I had with styled components is keeping track of whether the components in the file were now React components or styled components! I also struggled mapping the styled components to the rendered DOM in the dev tools, which made debugging a bit tricky in some cases.
-- 'React.useEffect` is asking for additional dependencies in a couple of places in board.js (see FIXMEs). The only way I could get the app deployed was to ignore them, and if I add them as suggested I end up with infinite loops. I wasn't sure how to deal with this if any one knows how to deal with this I would love to know.
-- Board.js is a bit of a monster, I had a look at refactoring things, but I couldn't see any obvious ways to do this. I considered moving the remaining game logic functions out, but they all change state so this didn't seem sensible. Any suggestions would be welcome!
+- ❗ I used `focus-within` to manage the keyboard focus outline on the styled inputs, but didn't manage to get the outline not appearing on mouse clicks only. I wanted something like `:focus-within:not(:focus-visible)` but I couldn't make this work. The outline is not really needed as the color change is very obvious. I could remove it completely but preferred to leave it rather than remove it.
+- ❗ One issue I had with styled components is keeping track of whether the components in the file were now React components or styled components! I also struggled mapping the styled components to the rendered DOM in the dev tools, which made debugging a bit tricky in some cases.
+- ❗ 'React.useEffect` is asking for additional dependencies in a couple of places in board.js (see FIXMEs). The only way I could get the app deployed was to ignore them, and if I add them as suggested I end up with infinite loops. I wasn't sure how to deal with this if any one knows how to deal with this I would love to know.
+- ❗ Board.js is a bit of a monster, I had a look at refactoring things, but I couldn't see any obvious ways to do this. I considered moving the remaining game logic functions out, but they all change state so this didn't seem sensible. Any suggestions would be welcome!
 
 ### Continued development
 
