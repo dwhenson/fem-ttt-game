@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./images/preview.jpg.jpg)
+![Design preview for the Tic Tac Toe coding challenge](./images/preview.jpg)
 
 ### Links
 
