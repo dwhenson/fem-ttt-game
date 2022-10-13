@@ -19,7 +19,7 @@ function Modal({
   // Confirm quit modal
   if (confirmQuit) {
     return (
-      <StyledModal>
+      <StyledModal delay={false}>
         <Result>Restart Game?</Result>
         <ButtonWrapper>
           <Button id="cancel" children={"No, Cancel"} action={setComfirmQuit} />
@@ -59,7 +59,7 @@ function Modal({
   // Winner modal
   if (status === "X" || status === "O") {
     return (
-      <StyledModal>
+      <StyledModal delay={true}>
         {gameType !== "CPU" && (
           <p>Player {squares.filter(Boolean).length % 2 ? 1 : 2} wins!</p>
         )}
@@ -99,7 +99,7 @@ const StyledModal = styled.div`
   background-color: var(--clr-dark-200);
   transform: translate(-50%, -70%);
   animation-name: delay;
-  animation-duration: 1.25s;
+  animation-duration: ${(props) => (props.delay ? "2s" : "200ms")};
 
   @keyframes delay {
     0% {
