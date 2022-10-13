@@ -27,8 +27,9 @@ function Modal({
             id="restart"
             children={"Yes, restart"}
             action={quitGame}
-            color={"var(--clr-secondary-200)"}
-            shadow={"var(--clr-secondary-300)"}
+            dark={"var(--clr-secondary-300)"}
+            medium={"var(--clr-secondary-200)"}
+            light={"var(--clr-secondary-100)"}
           />
         </ButtonWrapper>
       </StyledModal>
@@ -46,8 +47,9 @@ function Modal({
             id="restart"
             children={"Next round"}
             action={resetGame}
-            color={"var(--clr-secondary-200)"}
-            shadow={"var(--clr-secondary-300)"}
+            dark={"var(--clr-secondary-300)"}
+            medium={"var(--clr-secondary-200)"}
+            light={"var(--clr-secondary-100)"}
           />
         </ButtonWrapper>
       </StyledModal>
@@ -73,8 +75,9 @@ function Modal({
             id="restart"
             children={"Next round"}
             action={resetGame}
-            color={"var(--clr-secondary-200)"}
-            shadow={"var(--clr-secondary-300)"}
+            dark={"var(--clr-secondary-300)"}
+            medium={"var(--clr-secondary-200)"}
+            light={"var(--clr-secondary-100)"}
           />
         </ButtonWrapper>
       </StyledModal>

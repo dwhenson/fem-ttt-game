@@ -52,15 +52,17 @@ function SelectGame({ setGameType, marker, setMarker }) {
         <Button
           id="CPU"
           action={(event) => setGameType(event.target.id)}
-          color={"var(--clr-secondary-200)"}
-          shadow={"var(--clr-secondary-300)"}>
+          dark={"var(--clr-secondary-300)"}
+          medium={"var(--clr-secondary-200)"}
+          light={"var(--clr-secondary-100)"}>
           New Game (vs CPU)
         </Button>
         <Button
           id="player"
           action={(event) => setGameType(event.target.id)}
-          color={"var(--clr-primary-200)"}
-          shadow={"var(--clr-primary-300)"}>
+          dark={"var(--clr-primary-300)"}
+          medium={"var(--clr-primary-200)"}
+          light={"var(--clr-primary-100)"}>
           New Game (vs player)
         </Button>
       </ButtonWrapper>

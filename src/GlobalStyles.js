@@ -40,7 +40,7 @@ const GlobalStyles = createGlobalStyle`
   --step-5: clamp(2.33rem, calc(1.69rem + 3.21vw), 4.58rem);
 
   /* Box shadow */
-  --shadow-color: 16, 33, 42;
+  --shadow-color: 21, 41, 51;
   /* prettier-ignore */
   --shadow-elevation-low:
     0.3px 0.5px 0.8px rgba(var(--shadow-color, 7, 0%, 14%), 0.14),
@@ -172,7 +172,7 @@ select {
 :focus-visible {
   opacity: 1;
   outline: 2px solid var(--clr-light-100);
-  outline-offset: 2px;
+  outline-offset: 0.5rem;
 }
 
 :focus:not(:focus-visible) {
