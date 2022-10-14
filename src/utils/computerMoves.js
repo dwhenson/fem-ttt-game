@@ -79,5 +79,3 @@ export default function computerMove(squares, marker) {
   }
   return squareToChoose;
 }
-
-// if human chooses 0 & 8, or 2 & 6, then choose 1, 3, 5, 7

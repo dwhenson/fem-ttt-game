@@ -13,6 +13,7 @@ import initialScores from "../../constants/initialScores";
 // Helper functions
 import useLocalStorageState from "../../utils/useLocalStorageState";
 import useToggle from "../../utils/useToggle";
+import { delayCompChoice, randomizeDelay } from "../../utils/delayComputerMove";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
 import computerMove from "../../utils/computerMoves";
 
@@ -42,10 +43,13 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }
 
   // Update UI to reflect square chosen
-  function renderSquareChoice(square) {
+  async function renderSquareChoice(square) {
     if (status || squares[square]) return;
     const nextSquares = [...squares];
     nextSquares[square] = turn;
+    if (turn !== marker) {
+      await delayCompChoice(randomizeDelay(200, 500));
+    }
     setSquares(nextSquares);
   }
 
@@ -117,6 +121,8 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
               id={index}
               squares={squares}
               renderSquareChoice={renderSquareChoice}
+              turn={turn}
+              marker={marker}
             />
           ))}
         </Grid>
