@@ -123,6 +123,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
               renderSquareChoice={renderSquareChoice}
               turn={turn}
               marker={marker}
+              gameType={gameType}
             />
           ))}
         </Grid>

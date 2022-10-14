@@ -3,14 +3,13 @@ import styled from "styled-components";
 import X from "../X";
 import O from "../O";
 
-function Square({ id, squares, turn, marker, renderSquareChoice }) {
+function Square({ id, squares, turn, marker, gameType, renderSquareChoice }) {
   const icon = squares[id] === "X" ? <X /> : squares[id] === "O" ? <O /> : null;
-
   return (
     <Button
       onClick={() => renderSquareChoice(id)}
       aria-label={squares[id] ?? "blank"}
-      disabled={!!icon || turn !== marker}>
+      disabled={!!icon || (gameType !== "player" && turn !== marker)}>
       {icon}
     </Button>
   );
