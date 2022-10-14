@@ -47,7 +47,7 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     if (status || squares[square]) return;
     const nextSquares = [...squares];
     nextSquares[square] = turn;
-    if (turn !== marker) {
+    if (gameType !== "player" && turn !== marker) {
       await delayCompChoice(randomizeDelay(200, 500));
     }
     setSquares(nextSquares);
@@ -65,7 +65,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     if (marker !== turn) {
       renderSquareChoice(computerMove(squares, marker));
     }
-    // FIXME React Hook React.useEffect has missing dependencies: 'marker', 'renderSquareChoice', and 'squares'. Either include them or remove the dependency array.
     // eslint-disable-next-line
   }, [gameType, turn]);
 
@@ -75,7 +74,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
-    // FIXME React Hook React.useEffect has missing dependencies: 'score' and 'setScore'. Either include them or remove the dependency array. If 'setScore' changes too often, find the parent component that defines it and wrap that definition in useCallback.
     // eslint-disable-next-line
   }, [status]);
 
