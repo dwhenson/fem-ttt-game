@@ -16,6 +16,7 @@ function App() {
 
   return (
     <Wrapper>
+      <Header>Tic Tac Toe Game</Header>
       {!gameType && (
         <SelectGame
           gameType={gameType}
@@ -43,7 +44,7 @@ function App() {
 }
 
 // Styled Components
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: grid;
   place-content: center;
   grid-template-columns: min(100%, 20rem);
@@ -61,6 +62,16 @@ const Wrapper = styled.div`
   > * ~ * {
     margin-block-start: var(--space-m);
   }
+`;
+
+const Header = styled.h1`
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 `;
 
 export default App;
