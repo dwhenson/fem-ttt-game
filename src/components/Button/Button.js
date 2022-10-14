@@ -18,11 +18,11 @@ const StyledButton = styled.button`
   border-radius: 0.5rem;
   background-color: var(--dark, var(--clr-light-300));
   transition: background-color 600ms;
-  color: var(--clr-dark-300);
   letter-spacing: 0.05em;
+  color: var(--clr-dark-300);
   text-transform: uppercase;
-  cursor: pointer;
   transform: ${(props) => (props.id === "restart" ? "translateY(2px)" : 0)};
+  cursor: pointer;
 
   &:hover {
     background-color: var(--medium, var(--clr-light-200));

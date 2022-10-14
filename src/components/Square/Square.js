@@ -25,8 +25,8 @@ const Button = styled.button`
   border-radius: 0.5rem;
   box-shadow: 0 0.25em var(--clr-dark-300);
   background-color: var(--clr-dark-200);
-  cursor: pointer;
   transition: filter 200ms;
+  cursor: pointer;
 
   &:hover,
   &:focus {
