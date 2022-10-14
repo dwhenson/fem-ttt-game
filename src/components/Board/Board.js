@@ -79,7 +79,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const inertHeader = React.useRef();
   const inertGrid = React.useRef();
 
-  // Enable return to last selected element
   function getEventTarget(event) {
     setFocus(event.target.closest("button"));
   }

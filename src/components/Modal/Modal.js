@@ -44,7 +44,7 @@ function Modal({
         <ButtonWrapper>
           <Button id="quit" children={"Quit"} action={setComfirmQuit} />
           <Button
-            id="restart"
+            id="next"
             children={"Next round"}
             action={resetGame}
             dark={"var(--clr-secondary-300)"}
@@ -72,7 +72,7 @@ function Modal({
         <ButtonWrapper>
           <Button id="quit" children={"Quit"} action={setComfirmQuit} />
           <Button
-            id="restart"
+            id="next"
             children={"Next round"}
             action={resetGame}
             dark={"var(--clr-secondary-300)"}

@@ -22,6 +22,7 @@ const StyledButton = styled.button`
   letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
+  transform: ${(props) => (props.id === "restart" ? "translateY(2px)" : 0)};
 
   &:hover {
     background-color: var(--medium, var(--clr-light-200));
@@ -45,7 +46,7 @@ const StyledButton = styled.button`
 
 const Front = styled.span`
   display: block;
-  padding-block: var(--space-xxs);
+  padding-block: var(--space-xs);
   padding-inline: var(--space-s);
   border-radius: 0.5rem;
   box-shadow: var(--low);

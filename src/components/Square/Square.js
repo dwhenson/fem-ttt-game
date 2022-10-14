@@ -9,7 +9,8 @@ function Square({ id, squares, renderSquareChoice }) {
   return (
     <Button
       onClick={() => renderSquareChoice(id)}
-      aria-label={squares[id] ?? "blank"}>
+      aria-label={squares[id] ?? "blank"}
+      disabled={!!icon}>
       {icon}
     </Button>
   );
@@ -27,7 +28,8 @@ const Button = styled.button`
   cursor: pointer;
   transition: filter 200ms;
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: brightness(130%);
   }
 `;
