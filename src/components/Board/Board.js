@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 // Components
-import Square from "../Square/Square";
 import Button from "../Button/Button";
 import Logo from "../Logo/Logo";
-import Restart from "../Restart/Restart";
-import Xsmall from "../Xsmall/Xsmall";
-import Osmall from "../Osmall/Osmall";
 import Modal from "../Modal/Modal";
+import Osmall from "../Osmall/Osmall";
+import Restart from "../Restart/Restart";
+import Square from "../Square/Square";
+import Xsmall from "../Xsmall/Xsmall";
 // Variables
 import initialScores from "../../constants/initialScores";
 // Helper functions
-import useLocalStorageState from "../../utils/useLocalStorageState";
-import useToggle from "../../utils/useToggle";
+import computerMove from "../../utils/computerMoves";
 import { delayCompChoice, randomizeDelay } from "../../utils/delayComputerMove";
 import { calculateGameStatus, calculateNextTurn } from "../../utils/gameLogic";
-import computerMove from "../../utils/computerMoves";
+import useLocalStorageState from "../../utils/useLocalStorageState";
+import useToggle from "../../utils/useToggle";
 
 function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   const reset = Array(9).fill(null);
@@ -43,15 +43,18 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
   }
 
   // Update UI to reflect square chosen
-  async function renderSquareChoice(square) {
-    if (status || squares[square]) return;
-    const nextSquares = [...squares];
-    nextSquares[square] = turn;
-    if (gameType !== "player" && turn !== marker) {
-      await delayCompChoice(randomizeDelay(200, 500));
-    }
-    setSquares(nextSquares);
-  }
+  const renderSquareChoice = React.useCallback(
+    async (square) => {
+      if (status || squares[square]) return;
+      const nextSquares = [...squares];
+      nextSquares[square] = turn;
+      if (gameType !== "player" && turn !== marker) {
+        await delayCompChoice(randomizeDelay(200, 500));
+      }
+      setSquares(nextSquares);
+    },
+    [gameType, marker, squares, status, turn]
+  );
 
   // Monitor and update game playing state
   React.useEffect(() => {
@@ -65,7 +68,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     if (marker !== turn) {
       renderSquareChoice(computerMove(squares, marker));
     }
-    // eslint-disable-next-line
   }, [gameType, turn]);
 
   // Update total scores
@@ -74,7 +76,6 @@ function Board({ gameType, setGameType, marker, setMarker, score, setScore }) {
     const newScore = { ...score };
     newScore[status] += 1;
     setScore(newScore);
-    // eslint-disable-next-line
   }, [status]);
 
   // Prevent focus on other components when modal is open

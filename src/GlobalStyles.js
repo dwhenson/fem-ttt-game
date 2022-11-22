@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
   --ff-body: "Outfit", sans-serif;
 
   /* Font sizes */
-  --step--2: clamp(0.65rem, calc(0.56rem + 0.44vw), 0.96rem);
+  --step--2: clamp(0.55rem, calc(0.66rem + 0.54vw), 0.96rem);
   --step--1: clamp(0.78rem, calc(0.66rem + 0.6vw), 1.2rem);
   --step-0: clamp(0.94rem, calc(0.78rem + 0.8vw), 1.5rem);
   --step-1: clamp(1.13rem, calc(0.91rem + 1.07vw), 1.88rem);
