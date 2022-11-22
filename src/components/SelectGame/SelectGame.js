@@ -158,8 +158,8 @@ const InputWrapper = styled.div`
 `;
 
 const LightText = styled.p`
-  opacity: 0.5;
-  color: var(--clr-light-200);
+  opacity: 0.75;
+  color: var(--clr-light-100);
 `;
 
 const ButtonWrapper = styled.div`
