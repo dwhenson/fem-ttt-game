@@ -1,6 +1,10 @@
-# Tic Tac Toe Challenge
+# Tic Tac Toe Game
 
 This is a solution to the [Tic Tac Toe challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v). Frontend Mentor challenges are designed to help developers improve their coding skills by building realistic projects. Assets are provided, but no guidance, and developers are free to choose any approach to solving the challenge.
+
+This is a classic practice project for web developers and was a great exercise to complete. It required skills in semantic HTML, CSS grid layout, state management and JavaScript logic. I used React and applied the lessons I have learnt from an online course I am currently following in order to consolidate what I have learnt.
+
+![Design preview for the Tic Tac Toe coding challenge](./images/preview.jpg)
 
 ## Overview
 
@@ -13,12 +17,8 @@ Users should be able to:
 - View the optimal layout for the game depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Play the game either solo vs the computer or multiplayer against another person
-- **Bonus 1**: Save the game state in the browser so that it’s preserved if the player refreshes their browser
-- **Bonus 2**: Instead of having the computer randomly make their moves, try making it clever so it’s proactive in blocking your moves and trying to win
-
-### Screenshot
-
-![Design preview for the Tic Tac Toe coding challenge](./images/preview.jpg)
+- Save the game state in the browser so that it’s preserved if the player refreshes their browser
+- Instead of having the computer randomly make their moves, make it so it’s proactive in blocking moves and trying to win
 
 ## The solution
 
@@ -38,6 +38,10 @@ This is my second project using React and the first using styled components. I'v
 - One issue I had with styled components is keeping track of whether the components in the file were now React components or styled components! I also struggled mapping the styled components to the rendered DOM in the dev tools, which made debugging a bit tricky in some cases. On reflection, I think that a simple naming convention could solve this.
 - 'React.useEffect` is asking for additional dependencies in a couple of places in board.js. The only way I could get the app deployed was to ignore them, and if I add them as suggested I end up with infinite loops. I can see that some of this is now due to passing in an object, and having done a little more study there are patterns that I can use to avoid this.
 - Board.js is a bit of a monster, I had a look at refactoring things, but I couldn't see any obvious ways to do this. I considered moving the remaining game logic functions out, but they all change state so this didn't seem sensible. Again, having done a little more study I now understand a couple of approaches I can use to at least reduce the number of props being passed.
+
+### Resources
+
+- [Josh Comeau's Joy of React course](https://www.joyofreact.com/)
 
 ### Continued development
 
